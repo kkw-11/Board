@@ -17,8 +17,8 @@ public class BoardController {
 
     @GetMapping("list")
     public String list(Model model){
-        List<Board> boards = boardRepository.findAll();
-        model.addAttribute("boards",boards);
+        List<Board> board = boardRepository.findAll();
+        model.addAttribute("board",board);
         return "board/list";
     }
 
