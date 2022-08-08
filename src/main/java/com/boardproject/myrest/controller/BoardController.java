@@ -2,11 +2,14 @@ package com.boardproject.myrest.controller;
 
 import com.boardproject.myrest.model.Board;
 import com.boardproject.myrest.repository.BoardRepository;
+import com.boardproject.myrest.validator.BoardValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -14,6 +17,9 @@ import java.util.List;
 public class BoardController {
     @Autowired
     private BoardRepository boardRepository;
+
+    @Autowired
+    private BoardValidator boardValidator;
 
     @GetMapping("list")
     public String list(Model model){
@@ -24,6 +30,7 @@ public class BoardController {
 
     @GetMapping("/form")
     public String form(Model model, @RequestParam(required = false) Long id){
+
         if(id == null){
             model.addAttribute("board",new Board());
         }
@@ -35,7 +42,12 @@ public class BoardController {
     }
 
     @PostMapping("/form")
-    public String greetingSubmit(@ModelAttribute Board board) {
+    public String greetingSubmit(@Valid Board board, BindingResult bindingResult) {
+        boardValidator.validate(board,bindingResult);
+        if(bindingResult.hasErrors()){
+            return "board/form";
+        }
+
         boardRepository.save(board);
         return "redirect:/board/list";
     }

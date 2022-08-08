@@ -1,6 +1,5 @@
 package com.boardproject.myrest.controller;
 
-import com.sun.org.apache.xpath.internal.objects.XString;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
