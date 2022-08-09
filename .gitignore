@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+\src\main\resources\application.properties
+index.html
+greeting.html
+Greeting.java
+GreetingController.java
