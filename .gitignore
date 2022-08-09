@@ -32,7 +32,7 @@ build/
 ### VS Code ###
 .vscode/
 
-\src\main\resources\application.properties
+application.properties
 index.html
 greeting.html
 Greeting.java
